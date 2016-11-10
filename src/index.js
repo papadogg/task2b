@@ -29,6 +29,24 @@ app.get('/task2b',(req,res)=>{
    res.send(result); 
 });
 
+app.get('/task2c',(req,res)=>{
+    let username = req.query.username;
+   
+    if(username.indexOf('//')>-1){
+        username = username.slice(username.indexOf("//")+2,username.length);        
+    }
+    
+    username =username.slice(username.indexOf("/")+1,username.length);
+    
+    if(username.indexOf('/')>0) {
+        username = username.slice(0,username.indexOf("/"));
+    }
+    
+    username = username.replace(/@/g, "");
+    username = "@"+username;
+    res.send(username);
+});
+
 
 app.listen(3000, () => {
   console.log('Your app listening on port 3000!');
